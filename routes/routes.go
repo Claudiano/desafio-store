@@ -22,5 +22,10 @@ func StartServer() {
 		r.Post("/", accountController.CreateAccount)
 	})
 
+	routes.Route("/transfers", func(r chi.Router) {
+		r.Get("/", accountController.FindAllAccount)
+		r.Post("/", accountController.CreateAccount)
+	})
+
 	http.ListenAndServe(port, routes)
 }
