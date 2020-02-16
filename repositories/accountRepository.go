@@ -17,10 +17,10 @@ func (repository AccountRepository) FindAccountById(id uint64) string {
 func (repository AccountRepository) Save(account models.Account) string {
 
 	var result string
-	if account.GetId() == nill {
+	if account.GetId() == 0 {
 		result = repository.create(account)
 	} else {
-		result repository.update(account)
+		result = repository.update(account)
 	}
 
 	return result

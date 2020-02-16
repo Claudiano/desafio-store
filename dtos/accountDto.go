@@ -1,10 +1,14 @@
 package dtos
 
 type AccountDto struct {
-	name string `json:"name"`
-	cpf  string `json:"cpf"`
+	Name string `json: name`
+	Cpf  string `json: cpf`
 }
 
 func (a AccountDto) GetName() string {
-	return a.name
+	return a.Name
+}
+
+func (a AccountDto) GetCpf() string {
+	return a.Cpf
 }

@@ -29,7 +29,7 @@ func (AccountController) FindAccountById(w http.ResponseWriter, r *http.Request)
 }
 
 func (AccountController) CreateAccount(w http.ResponseWriter, r *http.Request) {
-	var accountDto dtos.AccountDto
+	var accountDto = dtos.AccountDto{}
 
 	err := json.NewDecoder(r.Body).Decode(&accountDto)
 	checkError(err)

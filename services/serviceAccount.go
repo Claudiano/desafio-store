@@ -22,7 +22,10 @@ func (ServiceAccount) FindAccountById(id uint64) string {
 
 func (ServiceAccount) CreateAccount(accountDto dtos.AccountDto) string {
 
-	var account models.Account
+	var account = models.Account{}
 
-	return repositoryAccount.Save()
+	account.SetName(accountDto.GetName())
+	account.SetCpf(accountDto.GetCpf())
+
+	return repositoryAccount.Save(account)
 }

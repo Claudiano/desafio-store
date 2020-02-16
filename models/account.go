@@ -24,7 +24,7 @@ func (account Account) GetName() string {
 	return account.name
 }
 func (account *Account) SetName(name string) {
-	return account.name
+	account.name = name
 }
 
 func (account Account) GetCpf() string {
@@ -35,8 +35,8 @@ func (account *Account) SetCpf(cpf string) {
 	account.cpf = cpf
 }
 
-func (account Account) GetBallance() {
-	account.ballance
+func (account Account) GetBallance() float32 {
+	return account.ballance
 }
 
 func (account *Account) SetBallance(ballance float32) {
