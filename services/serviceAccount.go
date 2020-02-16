@@ -1,20 +1,28 @@
 package services
 
-import "fmt"
+import (
+	"desafio-store/dtos"
+	"desafio-store/models"
+	"desafio-store/repositories"
+)
+
+var repositoryAccount = repositories.AccountRepository{}
 
 type ServiceAccount struct{}
 
 func (ServiceAccount) FindAllAccount() string {
 
-	return "todas as contas"
+	return repositoryAccount.FindAllAccounts()
 }
 
 func (ServiceAccount) FindAccountById(id uint64) string {
 
-	return fmt.Sprintf("Conta com id: %v", id)
+	return repositoryAccount.FindAccountById(id)
 }
 
-func (ServiceAccount) CreateAccount() string {
+func (ServiceAccount) CreateAccount(accountDto dtos.AccountDto) string {
 
-	return "Criar conta"
+	var account models.Account
+
+	return repositoryAccount.Save()
 }

@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"desafio-store/dtos"
 	"desafio-store/services"
+	"encoding/json"
 	"fmt"
+	"log"
 	"net/http"
 	"strconv"
 
@@ -26,6 +29,17 @@ func (AccountController) FindAccountById(w http.ResponseWriter, r *http.Request)
 }
 
 func (AccountController) CreateAccount(w http.ResponseWriter, r *http.Request) {
-	res := serviceAccount.CreateAccount()
+	var accountDto dtos.AccountDto
+
+	err := json.NewDecoder(r.Body).Decode(&accountDto)
+	checkError(err)
+
+	res := serviceAccount.CreateAccount(accountDto)
 	fmt.Fprintf(w, "%v", res)
+}
+
+func checkError(err error) {
+	if err != nil {
+		log.Panic(err)
+	}
 }

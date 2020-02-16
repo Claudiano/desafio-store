@@ -12,7 +12,7 @@ import (
 func StartServer() {
 	var accountController = controllers.AccountController{}
 
-	port := os.Getenv("PORT")
+	port := os.Getenv("SERVER_PORT")
 
 	routes := chi.NewRouter()
 
