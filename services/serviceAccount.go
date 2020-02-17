@@ -20,7 +20,7 @@ func (ServiceAccount) FindAccountById(id uint64) string {
 	return repositoryAccount.FindAccountById(id)
 }
 
-func (ServiceAccount) CreateAccount(accountDto dtos.AccountDto) string {
+func (ServiceAccount) CreateAccount(accountDto dtos.AccountDto) error {
 
 	var account = models.Account{}
 

@@ -5,44 +5,44 @@ import (
 )
 
 type Account struct {
-	id         uint64
-	name       string
-	cpf        string
-	ballance   float32
-	created_at time.Time
+	Id         uint64  `gorm:PRIMARY_KEY;AUTO_INCREMENT"`
+	Name       string  `gorm:"type:varchar(200)"`
+	Cpf        string  `gorm:"type:varchar(11);unique;not null"`
+	Ballance   float32 `gorm:"DEFAULT:0.0"`
+	Created_at time.Time
 }
 
 func (account Account) GetId() uint64 {
-	return account.id
+	return account.Id
 }
 
-func (account *Account) SetId(id uint64) {
-	account.id = id
+func (account *Account) SetId(Id uint64) {
+	account.Id = Id
 }
 
 func (account Account) GetName() string {
-	return account.name
+	return account.Name
 }
-func (account *Account) SetName(name string) {
-	account.name = name
+func (account *Account) SetName(Name string) {
+	account.Name = Name
 }
 
 func (account Account) GetCpf() string {
-	return account.cpf
+	return account.Cpf
 }
 
-func (account *Account) SetCpf(cpf string) {
-	account.cpf = cpf
+func (account *Account) SetCpf(Cpf string) {
+	account.Cpf = Cpf
 }
 
 func (account Account) GetBallance() float32 {
-	return account.ballance
+	return account.Ballance
 }
 
-func (account *Account) SetBallance(ballance float32) {
-	account.ballance = ballance
+func (account *Account) SetBallance(Ballance float32) {
+	account.Ballance = Ballance
 }
 
 func (account Account) GetCreatedAt() time.Time {
-	return account.created_at
+	return account.Created_at
 }

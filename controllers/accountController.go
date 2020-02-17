@@ -35,7 +35,11 @@ func (AccountController) CreateAccount(w http.ResponseWriter, r *http.Request) {
 	checkError(err)
 
 	res := serviceAccount.CreateAccount(accountDto)
-	fmt.Fprintf(w, "%v", res)
+	if res != nil {
+		log.Println("Error: %v", err)
+	}
+
+	fmt.Fprintf(w, "Hello")
 }
 
 func checkError(err error) {
