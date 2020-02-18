@@ -80,11 +80,19 @@ func verifyDatabaseTables() {
 	conn = connection.PgConnect()
 	db := conn.Pgdb
 
+	if err := conn.Pgdb.DB().Ping(); err != nil {
+
+		log.Fatal("Banco de dados não acessivel")
+	}
+
 	if !db.HasTable(&models.Account{}) {
 		log.Println("Criando tabela Account")
 		db.AutoMigrate(&models.Account{})
 	}
 
-	log.Println("Banco de dados ok")
+	if !db.HasTable(&models.Transfer{}) {
+		log.Println("Criando tabela Account")
+		db.AutoMigrate(&models.Transfer{})
+	}
 
 }

@@ -11,6 +11,7 @@ import (
 
 func StartServer() {
 	var accountController = controllers.AccountController{}
+	var transferController = controllers.TransferController{}
 
 	port := os.Getenv("SERVER_PORT")
 
@@ -18,13 +19,13 @@ func StartServer() {
 
 	routes.Route("/accounts", func(r chi.Router) {
 		r.Get("/", accountController.FindAllAccount)
-		r.Get("/{account_id}/balance", accountController.FindAccountById)
+		r.Get("/{account_id}/ballance", accountController.FindAccountById)
 		r.Post("/", accountController.CreateAccount)
 	})
 
 	routes.Route("/transfers", func(r chi.Router) {
-		r.Get("/", accountController.FindAllAccount)
-		r.Post("/", accountController.CreateAccount)
+		r.Get("/", transferController.FindAllTransfer)
+		r.Post("/", transferController.CreateTransfer)
 	})
 
 	http.ListenAndServe(port, routes)
