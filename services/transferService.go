@@ -33,7 +33,7 @@ func (TransferService) CreateTransfer(transferDto dtos.TransferDto) error {
 		return err
 	}
 
-	if accountDestination.Ballance < transferDto.Amount {
+	if accountOrigin.Ballance < transferDto.Amount {
 		return errors.New("A conta origem não possui saldo suficiente para tranferencia.")
 	}
 
@@ -44,10 +44,7 @@ func (TransferService) CreateTransfer(transferDto dtos.TransferDto) error {
 	transfer.Account_destination_id = transferDto.Account_destination_id
 	transfer.Amount = transferDto.Amount
 
-	err = accountRepository.UpdateBallance(accountOrigin)
-	err = accountRepository.UpdateBallance(accountDestination)
-
-	err = transferRepository.Save(transfer)
+	err = transferRepository.Save(transfer, accountOrigin, accountDestination)
 	return err
 
 }

@@ -28,6 +28,7 @@ func (ServiceAccount) CreateAccount(accountDto dtos.AccountDto) error {
 
 	account.Name = accountDto.Name
 	account.Cpf = accountDto.Cpf
+	account.Ballance = 1000
 
 	return accountRepository.Save(account)
 }
